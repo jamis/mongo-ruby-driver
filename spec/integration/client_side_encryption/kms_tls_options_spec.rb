@@ -389,7 +389,9 @@ describe 'Client-Side Encryption' do
       end
 
       let(:should_raise_with_tls) do
-        true
+        # 6.0 mongocrypt expects a JSON-compatible error message from the KMS, but
+        # the mock KMS server returns an HTML error page.
+        ClusterConfig.instance.server_version >= '7.0'
       end
 
       it_behaves_like 'it respect KMS TLS options'
@@ -410,7 +412,9 @@ describe 'Client-Side Encryption' do
       end
 
       let(:should_raise_with_tls) do
-        true
+        # 6.0 mongocrypt expects a JSON-compatible error message from the KMS, but
+        # the mock KMS server returns an HTML error page.
+        ClusterConfig.instance.server_version >= '7.0'
       end
 
       it_behaves_like 'it respect KMS TLS options'
