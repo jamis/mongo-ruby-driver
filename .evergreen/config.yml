@@ -1539,12 +1539,12 @@ buildvariants:
     tasks:
       - name: "test-mlaunch"
 
-  - matrix_name: "fle above 4.4"
+  - matrix_name: "fle"
     matrix_spec:
       auth-and-ssl: "noauth-and-nossl"
       ruby: ["ruby-4.0", "ruby-3.4", "ruby-3.3", "ruby-3.2", "ruby-3.1"]
       topology: [replica-set, sharded-cluster]
-      mongodb-version: [ '6.0', '7.0', '8.0' ]
+      mongodb-version: [ '6.0', '7.0', '8.0', 'rapid' ]
       os: ubuntu2204
       fle: helper
     display_name: "FLE: ${mongodb-version} ${topology} ${ruby}"
@@ -1575,6 +1575,8 @@ buildvariants:
 #    tasks:
 #      - name: "test-fle"
 
+  # Runs specs against the latest server. This is not automatically run on PR's
+  # because we don't want to block PR's when the latest DB breaks something.
   - name: 'latest-server'
     activate: false
     display_name: 'Latest MongoDB Server'
