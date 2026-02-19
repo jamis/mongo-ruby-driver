@@ -22,7 +22,7 @@ describe 'Client-Side Encryption' do
     # the mock KMS server returns an HTML error page.
     let(:affected_by_mock_kms_server_change) do
       (kms_provider == 'azure' || kms_provider == 'gcp') &&
-        ClusterConfig.instance.server_version >= '7.0'
+        ClusterConfig.instance.server_version < '7.0'
     end
 
     let(:client_encryption_no_client_cert) do
